@@ -9,7 +9,9 @@ export default class Layout extends Component {
     return (
       <React.Fragment>
         <NavBar/>
-        <Routes/>
+          <div className="formBox">
+            <Routes/>
+          </div>
         <Footer />
       </React.Fragment>
     )
