@@ -1,0 +1,21 @@
+.ProfileSelectPage{
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	height: 100vh;
+}
+
+.ProfileSelectBox{
+	font-size: 35%;
+	margin-top: 20vh;
+	display: flex;
+  	flex-direction: column;
+  	justify-content: space-around;
+  	align-items: center;
+  	height: 50vh;
+	background-color: white;
+	border: solid 2px lightgrey;
+	border-radius: 10px;
+	width: 50%;
+	box-shadow: 0px 0px 4px grey;
+}
