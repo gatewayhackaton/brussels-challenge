@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FeedbackModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Countries">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="EU" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ErrorException">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ExceptionTime" Type="datetime" Nullable="false" />
+    <Property Name="ExceptionTitle" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="StackTrace" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Source" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="HelpLink" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="HResult" Type="int" />
+  </EntityType>
+  <EntityType Name="Feedbacks">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="OriginCountryId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="DestinationCountryId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="GroupTypeId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserTypeId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="TopicId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Rating" Type="int" />
+    <Property Name="Comment" Type="nvarchar(max)" />
+    <Property Name="RecordTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GroupTypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GroupTypeTopics">
+    <Key>
+      <PropertyRef Name="GroupTypeId" />
+      <PropertyRef Name="TopicId" />
+    </Key>
+    <Property Name="GroupTypeId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="TopicId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Topics">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ParentId" Type="uniqueidentifier" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserTypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="GroupTypeId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Feedbacks_Countries">
+    <End Role="Countries" Type="Self.Countries" Multiplicity="1" />
+    <End Role="Feedbacks" Type="Self.Feedbacks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Countries">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Feedbacks">
+        <PropertyRef Name="OriginCountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Feedbacks_Countries1">
+    <End Role="Countries" Type="Self.Countries" Multiplicity="1" />
+    <End Role="Feedbacks" Type="Self.Feedbacks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Countries">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Feedbacks">
+        <PropertyRef Name="DestinationCountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Feedbacks_GroupTypes">
+    <End Role="GroupTypes" Type="Self.GroupTypes" Multiplicity="1" />
+    <End Role="Feedbacks" Type="Self.Feedbacks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GroupTypes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Feedbacks">
+        <PropertyRef Name="GroupTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Feedbacks_Topics">
+    <End Role="Topics" Type="Self.Topics" Multiplicity="1" />
+    <End Role="Feedbacks" Type="Self.Feedbacks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Topics">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Feedbacks">
+        <PropertyRef Name="TopicId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Feedbacks_UserTypes">
+    <End Role="UserTypes" Type="Self.UserTypes" Multiplicity="1" />
+    <End Role="Feedbacks" Type="Self.Feedbacks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserTypes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Feedbacks">
+        <PropertyRef Name="UserTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GroupTypeTopics_GroupTypes">
+    <End Role="GroupTypes" Type="Self.GroupTypes" Multiplicity="1" />
+    <End Role="GroupTypeTopics" Type="Self.GroupTypeTopics" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GroupTypes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GroupTypeTopics">
+        <PropertyRef Name="GroupTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GroupTypeTopics_Topics">
+    <End Role="Topics" Type="Self.Topics" Multiplicity="1" />
+    <End Role="GroupTypeTopics" Type="Self.GroupTypeTopics" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Topics">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GroupTypeTopics">
+        <PropertyRef Name="TopicId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Topics_Topics">
+    <End Role="Topics" Type="Self.Topics" Multiplicity="0..1" />
+    <End Role="Topics1" Type="Self.Topics" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Topics">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Topics1">
+        <PropertyRef Name="ParentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserTypes_GroupTypes">
+    <End Role="GroupTypes" Type="Self.GroupTypes" Multiplicity="1" />
+    <End Role="UserTypes" Type="Self.UserTypes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GroupTypes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserTypes">
+        <PropertyRef Name="GroupTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FeedbackModelStoreContainer">
+    <EntitySet Name="Countries" EntityType="Self.Countries" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ErrorException" EntityType="Self.ErrorException" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Feedbacks" EntityType="Self.Feedbacks" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GroupTypes" EntityType="Self.GroupTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GroupTypeTopics" EntityType="Self.GroupTypeTopics" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Topics" EntityType="Self.Topics" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserTypes" EntityType="Self.UserTypes" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Feedbacks_Countries" Association="Self.FK_Feedbacks_Countries">
+      <End Role="Countries" EntitySet="Countries" />
+      <End Role="Feedbacks" EntitySet="Feedbacks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Feedbacks_Countries1" Association="Self.FK_Feedbacks_Countries1">
+      <End Role="Countries" EntitySet="Countries" />
+      <End Role="Feedbacks" EntitySet="Feedbacks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Feedbacks_GroupTypes" Association="Self.FK_Feedbacks_GroupTypes">
+      <End Role="GroupTypes" EntitySet="GroupTypes" />
+      <End Role="Feedbacks" EntitySet="Feedbacks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Feedbacks_Topics" Association="Self.FK_Feedbacks_Topics">
+      <End Role="Topics" EntitySet="Topics" />
+      <End Role="Feedbacks" EntitySet="Feedbacks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Feedbacks_UserTypes" Association="Self.FK_Feedbacks_UserTypes">
+      <End Role="UserTypes" EntitySet="UserTypes" />
+      <End Role="Feedbacks" EntitySet="Feedbacks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GroupTypeTopics_GroupTypes" Association="Self.FK_GroupTypeTopics_GroupTypes">
+      <End Role="GroupTypes" EntitySet="GroupTypes" />
+      <End Role="GroupTypeTopics" EntitySet="GroupTypeTopics" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GroupTypeTopics_Topics" Association="Self.FK_GroupTypeTopics_Topics">
+      <End Role="Topics" EntitySet="Topics" />
+      <End Role="GroupTypeTopics" EntitySet="GroupTypeTopics" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Topics_Topics" Association="Self.FK_Topics_Topics">
+      <End Role="Topics" EntitySet="Topics" />
+      <End Role="Topics1" EntitySet="Topics" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserTypes_GroupTypes" Association="Self.FK_UserTypes_GroupTypes">
+      <End Role="GroupTypes" EntitySet="GroupTypes" />
+      <End Role="UserTypes" EntitySet="UserTypes" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

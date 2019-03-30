@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FeedbackModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Countries">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EU" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Feedbacks" Relationship="Self.FK_Feedbacks_Countries" FromRole="Countries" ToRole="Feedbacks" />
+    <NavigationProperty Name="Feedbacks1" Relationship="Self.FK_Feedbacks_Countries1" FromRole="Countries" ToRole="Feedbacks" />
+  </EntityType>
+  <EntityType Name="ErrorException">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ExceptionTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ExceptionTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StackTrace" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Source" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="HelpLink" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="HResult" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Feedbacks">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="OriginCountryId" Type="Guid" Nullable="false" />
+    <Property Name="DestinationCountryId" Type="Guid" Nullable="false" />
+    <Property Name="GroupTypeId" Type="Guid" Nullable="false" />
+    <Property Name="UserTypeId" Type="Guid" Nullable="false" />
+    <Property Name="TopicId" Type="Guid" Nullable="false" />
+    <Property Name="Rating" Type="Int32" />
+    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Countries" Relationship="Self.FK_Feedbacks_Countries" FromRole="Feedbacks" ToRole="Countries" />
+    <NavigationProperty Name="Countries1" Relationship="Self.FK_Feedbacks_Countries1" FromRole="Feedbacks" ToRole="Countries" />
+    <NavigationProperty Name="GroupTypes" Relationship="Self.FK_Feedbacks_GroupTypes" FromRole="Feedbacks" ToRole="GroupTypes" />
+    <NavigationProperty Name="UserTypes" Relationship="Self.FK_Feedbacks_UserTypes" FromRole="Feedbacks" ToRole="UserTypes" />
+    <Property Name="RecordTime" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Topics" Relationship="FeedbackModel.FK_Feedbacks_Topics" FromRole="Feedbacks" ToRole="Topics" />
+  </EntityType>
+  <EntityType Name="GroupTypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Feedbacks" Relationship="Self.FK_Feedbacks_GroupTypes" FromRole="GroupTypes" ToRole="Feedbacks" />
+    <NavigationProperty Name="UserTypes" Relationship="FeedbackModel.FK_UserTypes_GroupTypes" FromRole="GroupTypes" ToRole="UserTypes" />
+    <NavigationProperty Name="Topics" Relationship="FeedbackModel.GroupTypeTopics" FromRole="GroupTypes" ToRole="Topics" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="UserTypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Feedbacks" Relationship="Self.FK_Feedbacks_UserTypes" FromRole="UserTypes" ToRole="Feedbacks" />
+    <Property Name="GroupTypeId" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="GroupTypes" Relationship="FeedbackModel.FK_UserTypes_GroupTypes" FromRole="UserTypes" ToRole="GroupTypes" />
+  </EntityType>
+  <Association Name="FK_Feedbacks_Countries">
+    <End Role="Countries" Type="Self.Countries" Multiplicity="1" />
+    <End Role="Feedbacks" Type="Self.Feedbacks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Countries">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Feedbacks">
+        <PropertyRef Name="OriginCountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Feedbacks_Countries1">
+    <End Role="Countries" Type="Self.Countries" Multiplicity="1" />
+    <End Role="Feedbacks" Type="Self.Feedbacks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Countries">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Feedbacks">
+        <PropertyRef Name="DestinationCountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Feedbacks_GroupTypes">
+    <End Role="GroupTypes" Type="Self.GroupTypes" Multiplicity="1" />
+    <End Role="Feedbacks" Type="Self.Feedbacks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GroupTypes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Feedbacks">
+        <PropertyRef Name="GroupTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Feedbacks_UserTypes">
+    <End Role="UserTypes" Type="Self.UserTypes" Multiplicity="1" />
+    <End Role="Feedbacks" Type="Self.Feedbacks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserTypes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Feedbacks">
+        <PropertyRef Name="UserTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FeedbackEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Countries" EntityType="Self.Countries" />
+    <EntitySet Name="ErrorException" EntityType="Self.ErrorException" />
+    <EntitySet Name="Feedbacks" EntityType="Self.Feedbacks" />
+    <EntitySet Name="GroupTypes" EntityType="Self.GroupTypes" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="UserTypes" EntityType="Self.UserTypes" />
+    <AssociationSet Name="FK_Feedbacks_Countries" Association="Self.FK_Feedbacks_Countries">
+      <End Role="Countries" EntitySet="Countries" />
+      <End Role="Feedbacks" EntitySet="Feedbacks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Feedbacks_Countries1" Association="Self.FK_Feedbacks_Countries1">
+      <End Role="Countries" EntitySet="Countries" />
+      <End Role="Feedbacks" EntitySet="Feedbacks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Feedbacks_GroupTypes" Association="Self.FK_Feedbacks_GroupTypes">
+      <End Role="GroupTypes" EntitySet="GroupTypes" />
+      <End Role="Feedbacks" EntitySet="Feedbacks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Feedbacks_UserTypes" Association="Self.FK_Feedbacks_UserTypes">
+      <End Role="UserTypes" EntitySet="UserTypes" />
+      <End Role="Feedbacks" EntitySet="Feedbacks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserTypes_GroupTypes" Association="FeedbackModel.FK_UserTypes_GroupTypes">
+      <End Role="GroupTypes" EntitySet="GroupTypes" />
+      <End Role="UserTypes" EntitySet="UserTypes" />
+    </AssociationSet>
+    <EntitySet Name="Topics" EntityType="FeedbackModel.Topics" />
+    <AssociationSet Name="FK_Feedbacks_Topics" Association="FeedbackModel.FK_Feedbacks_Topics">
+      <End Role="Topics" EntitySet="Topics" />
+      <End Role="Feedbacks" EntitySet="Feedbacks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Topics_Topics" Association="FeedbackModel.FK_Topics_Topics">
+      <End Role="Topics" EntitySet="Topics" />
+      <End Role="Topics1" EntitySet="Topics" />
+    </AssociationSet>
+    <AssociationSet Name="GroupTypeTopics" Association="FeedbackModel.GroupTypeTopics">
+      <End Role="GroupTypes" EntitySet="GroupTypes" />
+      <End Role="Topics" EntitySet="Topics" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="FK_UserTypes_GroupTypes">
+    <End Type="FeedbackModel.GroupTypes" Role="GroupTypes" Multiplicity="1" />
+    <End Type="FeedbackModel.UserTypes" Role="UserTypes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GroupTypes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserTypes">
+        <PropertyRef Name="GroupTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Topics">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="ParentId" Type="Guid" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Feedbacks" Relationship="FeedbackModel.FK_Feedbacks_Topics" FromRole="Topics" ToRole="Feedbacks" />
+    <NavigationProperty Name="Topics1" Relationship="FeedbackModel.FK_Topics_Topics" FromRole="Topics" ToRole="Topics1" />
+    <NavigationProperty Name="Topics2" Relationship="FeedbackModel.FK_Topics_Topics" FromRole="Topics1" ToRole="Topics" />
+    <NavigationProperty Name="GroupTypes" Relationship="FeedbackModel.GroupTypeTopics" FromRole="Topics" ToRole="GroupTypes" />
+  </EntityType>
+  <Association Name="FK_Feedbacks_Topics">
+    <End Type="FeedbackModel.Topics" Role="Topics" Multiplicity="1" />
+    <End Type="FeedbackModel.Feedbacks" Role="Feedbacks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Topics">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Feedbacks">
+        <PropertyRef Name="TopicId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Topics_Topics">
+    <End Type="FeedbackModel.Topics" Role="Topics" Multiplicity="0..1" />
+    <End Type="FeedbackModel.Topics" Role="Topics1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Topics">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Topics1">
+        <PropertyRef Name="ParentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GroupTypeTopics">
+    <End Type="FeedbackModel.GroupTypes" Role="GroupTypes" Multiplicity="*" />
+    <End Type="FeedbackModel.Topics" Role="Topics" Multiplicity="*" />
+  </Association>
+</Schema>
