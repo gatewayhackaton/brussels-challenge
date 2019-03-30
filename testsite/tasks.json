@@ -1,0 +1,11 @@
+{
+    "taskName": "Open as HTML File",     
+    "isShellCommand": true,
+    "command": "Shell",
+    "windows": {
+        "command": "explorer.exe"                
+    },
+    "args": [
+        "${file}"
+    ]
+} 
