@@ -2,3 +2,4 @@ node_modules
 
 npm-debug.log
 *.lock
+.vs/brussels-challenge/v15/.suo
