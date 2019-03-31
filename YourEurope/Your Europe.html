@@ -409,7 +409,8 @@
 			</div>
 			<h6 class="modal-h5">Your current location is <span class="badge badge-info modal-country">___</span></h6>
 			<div class="modal-footer">			  
-			  <button type="button" class="btn btn-outline-success">Submit</button>
+			  <button type="button" class="btn btn-outline-success" onclick="a()">Submit</button>
+			<img id="showImage" src="Your Europe_files/done.jpg" style="visibility: hidden">
 			</div>
 		  </div>
 		</div>
@@ -421,4 +422,9 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src="bootstrap3-typeahead.min.js"></script>
 <script src="index.js"></script>
+<script>
+	function a(){
+		document.getElementById("showImage").style.visibility = "visible";
+	}
+</script>
 </body></html>
