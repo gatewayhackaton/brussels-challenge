@@ -157,7 +157,7 @@
 <div id="last-checked">Last checked: 13/02/2019</div>
 <h1>VAT</h1>
 
-<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" data-whatever="taxation">Report an obstacle</button>
+<button id="exampleBtn" type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" data-whatever="taxation" data-toggle="tooltip" data-placement="top" title="Did you experience any issue using the Single Digital Gateway?">Report an obstacle</button>
 
 <h3 class="toggle brexit-title functional-toggle" id="functional-toggle-1">UK decision to invoke Article 50 of the TEU: More information<span class="ico"></span>
 </h3>
@@ -390,7 +390,7 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">	
 		<div class="modal-dialog modal-dialog-centered" role="document">
 		  <div class="modal-content">
-			<div class="wrapper">
+			<div class="wrapper container">
 				<div class="modal-header">
 				<h5 class="modal-title" id="exampleModalLabel">New message</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -401,7 +401,7 @@
 				<form>
 					<div class="form-group">
 					<label for="recipient-name" class="col-form-label">Where have you experienced this obstacle?</label>
-					<input class="form-control typeahead" type="text">
+					<input class="form-control typeahead" type="text" placeholder="Start typing a country...">
 					</div>
 					<div class="form-group">
 					<label for="message-text" class="col-form-label">Add some comment:</label>

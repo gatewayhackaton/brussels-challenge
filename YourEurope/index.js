@@ -2,6 +2,14 @@
 //  alert("Your location is: " + geoplugin_countryName() + ", " + geoplugin_region() + ", " + geoplugin_city());
 //});
 
+$("#exampleBtn").mouseover(function () {
+	$('[data-toggle="modal"]').tooltip('show')
+  })
+
+  $("#exampleBtn").click(function () {
+	$('[data-toggle="modal"]').tooltip('hide')
+  })
+
 $('#exampleModal').on('show.bs.modal', function (event) {
 	  $('.typeahead').trigger('focus')
     var button = $(event.relatedTarget) // Button that triggered the modal
