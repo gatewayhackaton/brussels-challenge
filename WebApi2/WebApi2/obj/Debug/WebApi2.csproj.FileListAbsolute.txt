@@ -66,3 +66,6 @@ C:\Users\googler\Source\Repos\sdghack2019\brussels-challenge\WebApi2\WebApi2\obj
 C:\Users\googler\Source\Repos\sdghack2019\brussels-challenge\WebApi2\WebApi2\obj\Debug\WebApi2.csproj.CopyComplete
 C:\Users\googler\Source\Repos\sdghack2019\brussels-challenge\WebApi2\WebApi2\obj\Debug\WebApi2.dll
 C:\Users\googler\Source\Repos\sdghack2019\brussels-challenge\WebApi2\WebApi2\obj\Debug\WebApi2.pdb
+C:\Users\googler\source\repos\sdghack2019\brussels-challenge\WebApi2\WebApi2\bin\System.Web.Cors.dll
+C:\Users\googler\source\repos\sdghack2019\brussels-challenge\WebApi2\WebApi2\bin\System.Web.Http.Cors.dll
+C:\Users\googler\source\repos\sdghack2019\brussels-challenge\WebApi2\WebApi2\bin\System.Web.Http.Cors.xml

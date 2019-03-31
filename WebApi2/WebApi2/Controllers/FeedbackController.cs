@@ -7,6 +7,7 @@ using System.Web.Http;
 using WebApi2.Models;
 using WebApi2.Helpers;
 using WebApi2.DB;
+using System.Web.Http.Cors;
 
 namespace WebApi2.Controllers
 {

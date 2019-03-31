@@ -1,0 +1,37 @@
+﻿<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" data-whatever="taxation">Report an obstacle</button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Where have you experienced this obstacle?</label>
+                        <input class="form-control typeahead" type="text">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Add some comment:</label>
+                        <textarea class="form-control" id="message-text"></textarea>
+                    </div>
+                </form>
+            </div>
+            <h6 class="modal-h5">Your current location is <span class="badge badge-info modal-country">___</span></h6>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-success" onclick="a()">Submit</button>
+                <img id="showImage" src="~/Content/done.jpg" style="visibility: hidden">
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/custom.js"></script>
+<script>
+    function a() {
+        document.getElementById("showImage").style.visibility = "visible";
+    }
+</script>

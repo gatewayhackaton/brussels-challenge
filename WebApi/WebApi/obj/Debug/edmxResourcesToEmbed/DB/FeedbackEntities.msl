@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FeedbackModelStoreContainer" CdmEntityContainer="FeedbackEntities">
+    <EntitySetMapping Name="Countries">
+      <EntityTypeMapping TypeName="FeedbackModel.Countries">
+        <MappingFragment StoreEntitySet="Countries">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="EU" ColumnName="EU" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ErrorException">
+      <EntityTypeMapping TypeName="FeedbackModel.ErrorException">
+        <MappingFragment StoreEntitySet="ErrorException">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ExceptionTime" ColumnName="ExceptionTime" />
+          <ScalarProperty Name="ExceptionTitle" ColumnName="ExceptionTitle" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="StackTrace" ColumnName="StackTrace" />
+          <ScalarProperty Name="Source" ColumnName="Source" />
+          <ScalarProperty Name="HelpLink" ColumnName="HelpLink" />
+          <ScalarProperty Name="HResult" ColumnName="HResult" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Feedbacks">
+      <EntityTypeMapping TypeName="FeedbackModel.Feedbacks">
+        <MappingFragment StoreEntitySet="Feedbacks">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="OriginCountryId" ColumnName="OriginCountryId" />
+          <ScalarProperty Name="DestinationCountryId" ColumnName="DestinationCountryId" />
+          <ScalarProperty Name="GroupTypeId" ColumnName="GroupTypeId" />
+          <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+          <ScalarProperty Name="TopicId" ColumnName="TopicId" />
+          <ScalarProperty Name="Rating" ColumnName="Rating" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="RecordTime" ColumnName="RecordTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GroupTypes">
+      <EntityTypeMapping TypeName="FeedbackModel.GroupTypes">
+        <MappingFragment StoreEntitySet="GroupTypes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Topics">
+      <EntityTypeMapping TypeName="FeedbackModel.Topics">
+        <MappingFragment StoreEntitySet="Topics">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserTypes">
+      <EntityTypeMapping TypeName="FeedbackModel.UserTypes">
+        <MappingFragment StoreEntitySet="UserTypes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="GroupTypeId" ColumnName="GroupTypeId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="GroupTypeTopics" TypeName="FeedbackModel.GroupTypeTopics" StoreEntitySet="GroupTypeTopics">
+      <EndProperty Name="GroupTypes">
+        <ScalarProperty Name="Id" ColumnName="GroupTypeId" />
+      </EndProperty>
+      <EndProperty Name="Topics">
+        <ScalarProperty Name="Id" ColumnName="TopicId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

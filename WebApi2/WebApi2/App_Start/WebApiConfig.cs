@@ -11,6 +11,9 @@ namespace WebApi2
         {
             // Web API configuration and services
 
+            // New code
+            config.EnableCors();
+
             // Web API routes
             config.MapHttpAttributeRoutes();
 
