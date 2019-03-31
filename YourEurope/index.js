@@ -21,6 +21,31 @@ $('#exampleModal').on('show.bs.modal', function (event) {
     source: [
       {id: "id1", name: "Germany"},
       {id: "id2", name: "Italy"},
-      {id: "id3", name: "Belgium"}
+      {id: "id3", name: "Belgium"},
+	  {id: "id2", name: "Austria"},
+	  {id: "id2", name: "Bulgaria"},
+	  {id: "id2", name: "Croatia"},
+	  {id: "id2", name: "Republic of Cyprus"},
+	  {id: "id2", name: "Czech Republic"},
+	  {id: "id2", name: "Denmark"},
+	  {id: "id2", name: "Estonia"},
+	  {id: "id2", name: "Finland"},
+	  {id: "id2", name: "France"},
+	  {id: "id2", name: "Greece"},
+	  {id: "id2", name: "Hungary"},
+	  {id: "id2", name: "Ireland"},
+	  {id: "id2", name: "Latvia"},
+	  {id: "id2", name: "Lithuania"},
+	  {id: "id2", name: "Luxembourg"},
+	  {id: "id2", name: "Malta"},
+	  {id: "id2", name: "Netherlands"},
+	  {id: "id2", name: "Poland"},
+	  {id: "id2", name: "Portugal"},
+	  {id: "id2", name: "Romania"},
+	  {id: "id2", name: "Slovakia"},
+	  {id: "id2", name: "Slovenia"},
+	  {id: "id2", name: "Spain"},
+	  {id: "id2", name: "Sweden "},
+	  {id: "id2", name: "United Kingdom"}
     ]
   });  
