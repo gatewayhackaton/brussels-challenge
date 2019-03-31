@@ -8,6 +8,14 @@
   margin-top: 0;
 }
 
+.hidepanel {
+  display:none
+}
+
+.newWrapLayer {
+  align-content: center;
+}
+
 #overlay {
   position: fixed;
   background: rgba(48, 69, 92, 0.5);

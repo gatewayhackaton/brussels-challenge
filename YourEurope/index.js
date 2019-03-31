@@ -8,13 +8,32 @@ $('#exampleModal').on('show.bs.modal', function (event) {
     // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
     // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
     var modal = $(this)
-    modal.find('.modal-title').text('Report an obstacle for ' + recipient)
-
+		modal.find('.modal-title').text('Report an obstacle for ' + recipient)
+		modal.find('.typeahead').val('')
+		modal.find('#message-text').val('')
+		//$( ".wrapper" ).unwrap();
     $.getJSON("http://api.db-ip.com/v2/free/self").then(addrInfo =>
 		modal.find('.modal-country').text(addrInfo.countryName)
 	);
 
-  })
+	})
+	
+	$('#submitBtn').click(function() {
+		//$("#showImage").toggleClass("hidepanel");
+		$( ".wrapper" ).toggle();//.wrap( "<div class='wrapperHidden container text-center'><div class='row'><div class='col'><img class='m-5 img-fluid bounce animated' src='Your Europe_files/done.jpg'></div><div class='w-100'></div><div class='col mb-5 fadeIn animated'><h5>Thank you for your feedback</h5></div></div>" );
+	
+		setTimeout(function(){
+			$('#exampleModal').modal('hide');		
+
+		},1500);
+	
+
+	});
+
+	$('#exampleModal').on('hidden.bs.modal', function (e) {
+		//$( ".wrapper" ).unwrap(".wrapperHidden");
+		$( ".wrapper" ).toggle();
+	})
 
 
   $(".typeahead").typeahead({
