@@ -1,18 +1,16 @@
 import React, { Component } from 'react'
-import NavBar from './NavBar'
+import Selection from './Selection'
 import Routes from './Routes'
-import Footer from './Footer'
 
 
 export default class Layout extends Component {
   render() {
     return (
       <React.Fragment>
-        <NavBar/>
-          <div className="formBox">
-            <Routes/>
-          </div>
-        <Footer />
+        <Selection/>
+        <div className="box">
+          <Routes/>
+        </div>
       </React.Fragment>
     )
   }
