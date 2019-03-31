@@ -1,0 +1,72 @@
+// colours
+$lightgrey: rgba(220, 231, 235, 0.25);
+$darkgrey: rgba(48, 69, 92, 0.15);
+$black: rgba(48, 69, 92, 0.5);
+$white: rgba(254, 255, 250, 1);
+$blue: rgba(34, 190, 198, 1);
+$red: rgba(255, 104, 115, 1);
+
+// fonts
+$sans: 'Ubuntu', sans-serif;
+$heading: 'Source Sans Pro', sans-serif;
+
+.transition {
+	transition: all 0.25s ease-in-out;
+}
+
+// overlay
+#overlay {
+	position: fixed;
+	background: $black;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	text-align: center;
+	z-index: 9999;
+	display: none;
+
+	iframe {
+		margin-top: 10%;
+	}
+}
+
+// container
+#container {
+	background: $red;
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100vh;
+	text-transform: uppercase;
+
+	// header
+	header {
+		font-family: $heading;
+		font-weight: 700;
+		font-size: 1.5em;
+		color: $white;
+		line-height: 1;
+		padding: 0.5em 2em;
+		border-bottom: 0.5em solid $lightgrey;
+	}
+	// link
+	a.view-slide {
+		font-size: 0.9em;
+		font-family: $sans;
+		font-weight: 400;
+		text-decoration: none;
+		color: $blue;
+		background: $white;
+		margin-top: 2em;
+		padding: 1.2em;
+		border-radius: 0.25em;
+		@extend .transition;
+		&:hover {
+			color: $black;
+			background: $darkgrey;
+		}
+	}
+}
