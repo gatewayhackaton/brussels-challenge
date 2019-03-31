@@ -19,3 +19,9 @@ h1{
 h2{
 	font-size: 180%;
 }
+
+.NoDataBox{
+	margin-top: 20vh;
+	font-size: 350%;
+	color: lightgrey;
+}

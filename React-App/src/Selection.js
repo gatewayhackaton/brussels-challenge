@@ -23,7 +23,7 @@ export default class Selection extends Component {
             <Dropdown.Item href="/driver_license">Driver license</Dropdown.Item>
             <Dropdown.Item href="/studies">Studies</Dropdown.Item>
           </Dropdown.Menu>
-        </Dropdown>;
+        </Dropdown>
       </div>
     )
   }
